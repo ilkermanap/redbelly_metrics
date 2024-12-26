@@ -12,11 +12,11 @@ def find_last_block():
     blid = -1
     for line in cmd.stdout.decode().splitlines():
         if line.find("Imported new chain segment")> -1:
-            blid = line.split("{")[1].split(",")[0].split(":")[1].replace('"','')
+            blid = int(line.split("{")[1].split(",")[0].split(":")[1].replace('"',''))
             return(blid)
                      
         if line.find("with current local block") > -1:
-            blid = line.split("with current local block")[1].split()[0]
+            blid = int(line.split("with current local block")[1].split()[0])
 
     if blid > -1:
         return(blid)
